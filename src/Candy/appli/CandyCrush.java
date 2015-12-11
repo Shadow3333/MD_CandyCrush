@@ -22,15 +22,20 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
 
     // initialisation : événements souris et boucle principale
     public CandyCrush() {
-        // remplir une première fois la grille
+        newGrid();
+        addMouseListener(this);
+        addMouseMotionListener(this);
+        new Thread(this).start();
+    }
+    
+    public void newGrid()
+    {
+    	// remplir une première fois la grille
         while(fill());
         // enlever les alignements existants
         while(removeAlignments()) {
             fill();
         }
-        addMouseListener(this);
-        addMouseMotionListener(this);
-        new Thread(this).start();
     }
 
     // gestion des événements souris
@@ -228,16 +233,32 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
     }
 
     // met le jeu dans une fenêtre
-    public void start() {
+    private void launch() {
         Frame frame = new Frame("Miam, des bonbons !");
-        final CandyCrush obj = new CandyCrush();
+        newGrid();
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent event) {
                 System.exit(0);
             }
         });
-        frame.add(obj);
+        frame.add(this);
         frame.pack();
         frame.setVisible(true);
     }
+
+	public void start() {
+		Frame frame = new Frame("Candy Menu");
+		frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent event) {
+                System.exit(0);
+            }
+        });
+		
+		frame.setBounds(50, 100, 300, 450);
+        frame.setVisible(true);
+	}
+	public static void main(String[] args) {
+		CandyCrush c = new CandyCrush();
+		c.start();
+	}
 }
