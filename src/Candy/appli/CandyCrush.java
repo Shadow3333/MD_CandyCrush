@@ -1,13 +1,11 @@
-package Candy.main;
+package Candy.appli;
 
 import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 
-class CandyCrush extends Panel implements Runnable, MouseListener, MouseMotionListener {
-    /**
-	 * 
-	 */
+public class CandyCrush extends Panel implements Game, Runnable, MouseListener, MouseMotionListener {
+ 
 	private static final long serialVersionUID = 1L;
 	// grille avec un numéro de couleur par case
     int grid[][] = new int[8][8];
@@ -23,7 +21,7 @@ class CandyCrush extends Panel implements Runnable, MouseListener, MouseMotionLi
     Image buffer;
 
     // initialisation : événements souris et boucle principale
-    CandyCrush() {
+    public CandyCrush() {
         // remplir une première fois la grille
         while(fill());
         // enlever les alignements existants
@@ -230,7 +228,7 @@ class CandyCrush extends Panel implements Runnable, MouseListener, MouseMotionLi
     }
 
     // met le jeu dans une fenêtre
-    public static void main(String args[]) {
+    public void start() {
         Frame frame = new Frame("Miam, des bonbons !");
         final CandyCrush obj = new CandyCrush();
         frame.addWindowListener(new WindowAdapter() {
