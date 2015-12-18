@@ -247,12 +247,28 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
     }
 
 	public void start() {
-		Frame frame = new Frame("Candy Menu");
+		final Frame frame = new Frame("Candy Menu");
 		frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent event) {
                 System.exit(0);
             }
         });
+		
+		Button lancer = new Button("Lancer Candy crush");
+//		Button score = new Button("Score");
+//        Button exit = new Button("Exit");
+//        
+//        JPanel pan = new JPanel();
+		Bouton bouton = new Bouton();
+		bouton.setVisible(true);
+		frame.add(bouton, BorderLayout.CENTER);
+		
+
+	    lancer.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	           //frame.exit(0);
+	       }
+	    });
 		
 		frame.setBounds(50, 100, 300, 450);
         frame.setVisible(true);
