@@ -6,6 +6,7 @@ import java.util.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import Candy.strategy.Strategy;
 
@@ -176,6 +177,11 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
 		bouton.setVisible(true);
 		bouton.setSize(50, 300);
 		bouton.setText("To Menu");
+		JTextArea area = new JTextArea();
+	    area.setBounds(50,2,400,400);
+	    String scoreText = Integer.toString(score);
+	    area.append(scoreText);
+	    pan.add(area);
 		pan.add(bouton);
 		frame.add(pan);
 		frame.setBounds(50, 100, 100, 100);
