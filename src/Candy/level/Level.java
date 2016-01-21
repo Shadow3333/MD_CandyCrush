@@ -1,6 +1,6 @@
 package Candy.level;
 
-import candy.strategy.Strategy;
+import Candy.strategy.Strategy;
 
 public class Level {
 	

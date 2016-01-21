@@ -16,6 +16,8 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
     // coordonnées des cases sélectionnées : -1 = non sélectionné
     int selectedX = -1, selectedY = -1; 
     int swappedX = -1, swappedY = -1;
+    
+    int score = 0;
 
     // image pour le rendu hors écran
     Image buffer;
@@ -273,8 +275,8 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
 		frame.setBounds(50, 100, 300, 450);
         frame.setVisible(true);
 	}
-	public static void main(String[] args) {
-		CandyCrush c = new CandyCrush();
-		c.start();
-	}
+//	public static void main(String[] args) {
+//		CandyCrush c = new CandyCrush();
+//		c.start();
+//	}
 }

@@ -3,12 +3,12 @@ package Candy.Factory;
 import Candy.appli.Game;
 import Candy.appli.CandyCrush;
 
-public class Candy_Factory implements IFactory{
-	private IFactory c;
+public class Candy_Factory{
+	private static Candy_Factory c;
 	
 	private Candy_Factory(){}
 	
-	public IFactory init()
+	public static Candy_Factory init()
 	{
 		if (c == null) {
 			return new Candy_Factory();
