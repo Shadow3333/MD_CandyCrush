@@ -25,6 +25,7 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
     int swappedX = -1, swappedY = -1;
     
     Frame frame = new Frame("Miam, des bonbons !");
+    JLabel label;
     Strategy St;
     int score = 0;
 
@@ -75,7 +76,7 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
             swap(selectedX, selectedY, swappedX, swappedY);
             score += 10*St.getmultiplicateur();
             System.out.println(score);
-            if (score >= 100) {
+            if (score >= 150) {
     			gg();
     		}
         }
@@ -278,22 +279,7 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
         return new Dimension(32 * 8 + 1, 32 * 8 + 1);
     }
 
-    // met le jeu dans une fenÃªtre
-    private void launch() {
-        
-        newGrid();
-        frame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent event) {
-                System.exit(0);
-            }
-        });
-        frame.add(this);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
 	public void start() {
-		System.out.println("ça passe ici\n");
 //		final Frame frame = new Frame("Candy Menu");
 //		frame.addWindowListener(new WindowAdapter() {
 //            public void windowClosing(WindowEvent event) {
@@ -320,8 +306,9 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
 	                System.exit(0);
 	            }
 	        });
-		 	JLabel label = new JLabel(Integer.toString(score));
-		 	frame.add(label);
+		 	label = new JLabel("Score : " + Integer.toString(score));
+		 	frame.add(label, BorderLayout.BEFORE_FIRST_LINE);
+		 	label.setVisible(true);
 	        frame.add(this);
 	        frame.pack();
 	        frame.setLocationRelativeTo(null);
