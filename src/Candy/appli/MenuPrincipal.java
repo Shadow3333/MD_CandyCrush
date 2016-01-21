@@ -44,7 +44,7 @@ public class MenuPrincipal {
 	       }
 	    });
 		
-		frame.setBounds(50, 100, 300, 450);
+		frame.setBounds(50, 100, 300, 200);
 		frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 	}

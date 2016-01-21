@@ -83,7 +83,7 @@ public class MenuJeu {
 	       }
 	    });
 		
-		frame.setBounds(50, 100, 300, 450);
+		frame.pack();
 		frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 	}

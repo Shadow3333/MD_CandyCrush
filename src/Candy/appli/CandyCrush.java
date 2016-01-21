@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.*;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Candy.strategy.Strategy;
@@ -72,6 +73,11 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
         // lorsque l'on relâche la souris il faut faire l'échange et cacher les cases
         if(selectedX != -1 && selectedY != -1 && swappedX != -1 && swappedY != -1) {
             swap(selectedX, selectedY, swappedX, swappedY);
+            score += 10*St.getmultiplicateur();
+            System.out.println(score);
+            if (score >= 100) {
+    			gg();
+    		}
         }
         selectedX = selectedY = swappedX = swappedY = -1;
         repaint();
@@ -88,11 +94,6 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
         if(i < 0 || j < 0 || i >= 6 || j >= 8) return false;
         if(grid[i][j] == grid[i + 1][j] && grid[i][j] == grid[i + 2][j]) 
         {
-            score += 10*St.getmultiplicateur();
-            System.out.println(score);
-            if (score >= 400) {
-    			//gg();
-    		}
         	return true;
        	}
         return false;
@@ -103,11 +104,6 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
         if(i < 0 || j < 0 || i >= 8 || j >= 6) return false;
         if(grid[i][j] == grid[i][j + 1] && grid[i][j] == grid[i][j + 2]) 
         {
-            score += 10*St.getmultiplicateur();
-            System.out.println(score);
-            if (score >= 400) {
-    			//gg();
-    		}
         	return true;
        	}
         return false;
@@ -179,9 +175,10 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
 		JButton bouton = new JButton();
 		bouton.setVisible(true);
 		bouton.setSize(50, 300);
-		bouton.setText("CandyCrush");
+		bouton.setText("To Menu");
 		pan.add(bouton);
 		frame.add(pan);
+		frame.setBounds(50, 100, 100, 100);
 		frame.pack();
 		frame.repaint();
 		
@@ -323,8 +320,11 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
 	                System.exit(0);
 	            }
 	        });
+		 	JLabel label = new JLabel(Integer.toString(score));
+		 	frame.add(label);
 	        frame.add(this);
 	        frame.pack();
+	        frame.setLocationRelativeTo(null);
 	        frame.setVisible(true);
 	}
 //	public static void main(String[] args) {
