@@ -10,6 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Candy.Factory.Candy_Factory;
+import Candy.strategy.LevelEasyStrategy;
+import Candy.strategy.LevelHardStrategy;
+import Candy.strategy.LevelMediumStrategy;
+import Candy.strategy.Strategy;
 
 public class MenuJeu {
 	private final Frame frame;
@@ -56,18 +60,26 @@ public class MenuJeu {
 		bouton1.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
 	           frame.dispose();
+	           Candy_Factory CF = Candy_Factory.init();
+	           Strategy St = new LevelEasyStrategy();
+	           Game cc = CF.Create_Game(St);
+	           cc.start();
 	       }
 	    });
 		
 		bouton2.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
 	           frame.dispose();
+	           Candy_Factory CF = Candy_Factory.init();
+	           CF.Create_Game(new LevelMediumStrategy()).start();
 	       }
 	    });
 		
 		bouton3.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
 	           frame.dispose();
+	           Candy_Factory CF = Candy_Factory.init();
+	           CF.Create_Game(new LevelHardStrategy()).start();
 	       }
 	    });
 		

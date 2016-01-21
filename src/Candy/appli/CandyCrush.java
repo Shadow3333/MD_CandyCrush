@@ -2,6 +2,13 @@ package Candy.appli;
 
 import java.awt.*;
 import java.util.*;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+import Candy.Factory.Candy_Factory;
+import Candy.strategy.Strategy;
+
 import java.awt.event.*;
 
 public class CandyCrush extends Panel implements Game, Runnable, MouseListener, MouseMotionListener {
@@ -17,17 +24,20 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
     int selectedX = -1, selectedY = -1; 
     int swappedX = -1, swappedY = -1;
     
+    Frame frame = new Frame("Miam, des bonbons !");
+    Strategy St;
     int score = 0;
 
     // image pour le rendu hors écran
     Image buffer;
 
     // initialisation : événements souris et boucle principale
-    public CandyCrush() {
+    public CandyCrush(Strategy St) {
         newGrid();
         addMouseListener(this);
         addMouseMotionListener(this);
         new Thread(this).start();
+        this.St = St;
     }
     
     public void newGrid()
@@ -145,10 +155,36 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
                 }
             }
         }
+        score += 10*St.getmultiplicateur();
+        if (score >= 400) {
+			gg();
+		}
         return modified;
     }
 
-    // remplir les cases vides par gravité, et générer des cases aléatoirement par le haut
+    private void gg() {
+		frame.remove(this);
+		JPanel pan = new JPanel();
+		JButton bouton = new JButton();
+		bouton.setVisible(true);
+		bouton.setSize(50, 300);
+		bouton.setText("CandyCrush");
+		pan.add(bouton);
+		frame.add(pan);
+		frame.pack();
+		frame.repaint();
+		
+		bouton.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	           frame.dispose();
+	           MenuPrincipal c = new MenuPrincipal();
+	   		   c.start();
+	       }
+	    });
+		
+	}
+
+	// remplir les cases vides par gravité, et générer des cases aléatoirement par le haut
     boolean fill() {
         Random rand = new Random();
         boolean modified = false;
@@ -236,7 +272,7 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
 
     // met le jeu dans une fenêtre
     private void launch() {
-        Frame frame = new Frame("Miam, des bonbons !");
+        
         newGrid();
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent event) {
@@ -249,31 +285,36 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
     }
 
 	public void start() {
-		final Frame frame = new Frame("Candy Menu");
-		frame.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent event) {
-                System.exit(0);
-            }
-        });
-		
-		Button lancer = new Button("Lancer Candy crush");
-//		Button score = new Button("Score");
-//        Button exit = new Button("Exit");
-//        
-//        JPanel pan = new JPanel();
-		Bouton bouton = new Bouton();
-		bouton.setVisible(true);
-		frame.add(bouton, BorderLayout.CENTER);
-		
-
-	    lancer.addActionListener(new ActionListener() {
-	         public void actionPerformed(ActionEvent e) {
-	           //frame.exit(0);
-	       }
-	    });
-		
-		frame.setBounds(50, 100, 300, 450);
-        frame.setVisible(true);
+		System.out.println("�a passe ici\n");
+//		final Frame frame = new Frame("Candy Menu");
+//		frame.addWindowListener(new WindowAdapter() {
+//            public void windowClosing(WindowEvent event) {
+//                System.exit(0);
+//            }
+//        });
+//		
+//		Button lancer = new Button("Lancer Candy crush");
+//		Bouton bouton = new Bouton();
+//		bouton.setVisible(true);
+//		frame.add(bouton, BorderLayout.CENTER);
+//		
+//
+//	    lancer.addActionListener(new ActionListener() {
+//	         public void actionPerformed(ActionEvent e) {
+//	           //frame.exit(0);
+//	       }
+//	    });
+//		
+//		frame.setBounds(50, 100, 300, 450);
+//        frame.setVisible(true);
+		 frame.addWindowListener(new WindowAdapter() {
+	            public void windowClosing(WindowEvent event) {
+	                System.exit(0);
+	            }
+	        });
+	        frame.add(this);
+	        frame.pack();
+	        frame.setVisible(true);
 	}
 //	public static void main(String[] args) {
 //		CandyCrush c = new CandyCrush();

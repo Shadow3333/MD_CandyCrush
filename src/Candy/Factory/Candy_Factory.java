@@ -1,6 +1,7 @@
 package Candy.Factory;
 
 import Candy.appli.Game;
+import Candy.strategy.Strategy;
 import Candy.appli.CandyCrush;
 
 public class Candy_Factory{
@@ -16,7 +17,7 @@ public class Candy_Factory{
 		return c;
 	}
 	
-	public Game Create_Game() {
-		return new CandyCrush();
+	public Game Create_Game(Strategy St) {
+		return new CandyCrush(St);
 	}
 }
