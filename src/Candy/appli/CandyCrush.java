@@ -76,6 +76,10 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
         if(selectedX != -1 && selectedY != -1 && swappedX != -1 && swappedY != -1) {
             swap(selectedX, selectedY, swappedX, swappedY);
             score += 10*St.getmultiplicateur();
+            frame.remove(label);
+            label = new JLabel("Score : " + Integer.toString(score));
+		 	frame.add(label, BorderLayout.BEFORE_FIRST_LINE);
+		 	label.setVisible(true);
             System.out.println(score);
             if (score >= 150) {
     			gg();
