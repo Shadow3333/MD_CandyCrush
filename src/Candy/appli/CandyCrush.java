@@ -6,7 +6,6 @@ import java.util.*;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Candy.Factory.Candy_Factory;
 import Candy.strategy.Strategy;
 
 import java.awt.event.*;
@@ -33,11 +32,11 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
 
     // initialisation : événements souris et boucle principale
     public CandyCrush(Strategy St) {
+    	this.St = St;
         newGrid();
         addMouseListener(this);
         addMouseMotionListener(this);
         new Thread(this).start();
-        this.St = St;
     }
     
     public void newGrid()
@@ -87,14 +86,30 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
     // est-ce qu'on a trois cases de la même couleur vers le droite depuis (i, j) ?
     boolean horizontalAligned(int i, int j) {
         if(i < 0 || j < 0 || i >= 6 || j >= 8) return false;
-        if(grid[i][j] == grid[i + 1][j] && grid[i][j] == grid[i + 2][j]) return true;
+        if(grid[i][j] == grid[i + 1][j] && grid[i][j] == grid[i + 2][j]) 
+        {
+            score += 10*St.getmultiplicateur();
+            System.out.println(score);
+            if (score >= 400) {
+    			//gg();
+    		}
+        	return true;
+       	}
         return false;
     }
 
     // est-ce qu'on a trois cases de la même couleur vers le bas depuis (i, j) ?
     boolean verticalAligned(int i, int j) {
         if(i < 0 || j < 0 || i >= 8 || j >= 6) return false;
-        if(grid[i][j] == grid[i][j + 1] && grid[i][j] == grid[i][j + 2]) return true;
+        if(grid[i][j] == grid[i][j + 1] && grid[i][j] == grid[i][j + 2]) 
+        {
+            score += 10*St.getmultiplicateur();
+            System.out.println(score);
+            if (score >= 400) {
+    			//gg();
+    		}
+        	return true;
+       	}
         return false;
     }
 
@@ -155,10 +170,6 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
                 }
             }
         }
-        score += 10*St.getmultiplicateur();
-        if (score >= 400) {
-			gg();
-		}
         return modified;
     }
 
