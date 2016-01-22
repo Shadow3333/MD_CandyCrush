@@ -318,8 +318,8 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
     }
 
 	public void start() {
-//		URL url = Frame.class.getResource("sound.wav");
-//	    final AudioClip clip = Applet.newAudioClip(url);
+		URL url = Frame.class.getResource("s.mp3");
+	    final AudioClip clip = Applet.newAudioClip(url);
 		 frame.addWindowListener(new WindowAdapter() {
 	            public void windowClosing(WindowEvent event) {
 	                System.exit(0);
