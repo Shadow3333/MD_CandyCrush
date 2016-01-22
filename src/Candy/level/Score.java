@@ -1,25 +1,32 @@
 package Candy.level;
 
-import java.util.TreeSet;
+import java.util.TreeMap;
 
 public class Score {
 	
-	private TreeSet<Integer> times ;
+	private TreeMap<Integer, Difficults> times ;
 	
 	public Score(){
-		this.times = new TreeSet<Integer>();
+		this.times = new TreeMap<Integer, Difficults>();
 	}
 
-	public TreeSet<Integer> getTimes() {
+	public TreeMap<Integer, Difficults> getTimes() {
 		if (times.isEmpty()) {
 			return null;
 		}
 		return times;
 	}
 	
-	public void addTime(Integer time)
+	public void addMap(Integer time, Difficults difficult)
 	{
-		times.add(time);
+		times.put(time, difficult);
 	}
+	
+	public TreeMap<Integer, Difficults> getMap()
+	{
+		return times;
+	}
+	
+	
 
 }

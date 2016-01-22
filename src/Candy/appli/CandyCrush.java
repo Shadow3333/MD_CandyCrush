@@ -1,17 +1,32 @@
 package Candy.appli;
 
-import java.awt.*;
-import java.util.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.net.URL;
+import java.util.Date;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import Candy.level.Score;
 import Candy.strategy.Strategy;
-
-import java.awt.event.*;
 
 public class CandyCrush extends Panel implements Game, Runnable, MouseListener, MouseMotionListener {
  
@@ -170,8 +185,9 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
                         label = new JLabel("Score : " + Integer.toString(score));
             		 	frame.add(label, BorderLayout.BEFORE_FIRST_LINE);
             		 	label.setVisible(true);
+            		 	frame.pack();
             		 	frame.revalidate();
-                        if (score >= 300) {
+                        if (score >= 200) {
                 			gg();
                 		}
                 	}
@@ -197,7 +213,7 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
 //	    area.append(scoreText);
 //	    pan.add(area);
 		fin = (int) ((new Date().getTime())/1000);
-    	times.addTime(fin - dep);
+    	times.addMap(fin - dep, St.getDifficult());
 		pan.add(bouton);
 		frame.add(pan);
 		frame.setBounds(50, 100, 100, 100);
@@ -302,11 +318,14 @@ public class CandyCrush extends Panel implements Game, Runnable, MouseListener, 
     }
 
 	public void start() {
+//		URL url = Frame.class.getResource("sound.wav");
+//	    final AudioClip clip = Applet.newAudioClip(url);
 		 frame.addWindowListener(new WindowAdapter() {
 	            public void windowClosing(WindowEvent event) {
 	                System.exit(0);
 	            }
 	        });
+		 
 		 	dep = (int) ((new Date().getTime())/1000);
 		 	
 		 	label = new JLabel("Score : " + Integer.toString(score));
