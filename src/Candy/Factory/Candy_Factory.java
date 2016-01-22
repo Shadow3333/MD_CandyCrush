@@ -1,6 +1,7 @@
 package Candy.Factory;
 
 import Candy.appli.Game;
+import Candy.level.Score;
 import Candy.strategy.Strategy;
 import Candy.appli.CandyCrush;
 
@@ -17,7 +18,7 @@ public class Candy_Factory{
 		return c;
 	}
 	
-	public Game Create_Game(Strategy St) {
-		return new CandyCrush(St);
+	public Game Create_Game(Strategy St, Score times) {
+		return new CandyCrush(St, times);
 	}
 }

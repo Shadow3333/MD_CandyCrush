@@ -1,32 +1,25 @@
 package Candy.level;
 
+import java.util.TreeSet;
+
 public class Score {
 	
-	private int score;
-	private int bestScore;
-	private int minScore;
+	private TreeSet<Integer> times ;
 	
 	public Score(){
-		
+		this.times = new TreeSet<Integer>();
+	}
+
+	public TreeSet<Integer> getTimes() {
+		if (times.isEmpty()) {
+			return null;
+		}
+		return times;
 	}
 	
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int score) {
-		this.score = score;
-	}
-	public int getBestScore() {
-		return bestScore;
-	}
-	public void setBestScore(int bestScore) {
-		this.bestScore = bestScore;
-	}
-	public int getMinScore() {
-		return minScore;
-	}
-	public void setMinScore(int minScore) {
-		this.minScore = minScore;
+	public void addTime(Integer time)
+	{
+		times.add(time);
 	}
 
 }
